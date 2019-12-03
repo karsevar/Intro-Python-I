@@ -21,4 +21,29 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+# print(str.isdigit(sys.argv[1]))
+
+def calendar_function():
+	current = date.today()
+
+	if len(sys.argv) == 1:
+		print(calendar.TextCalendar(firstweekday=0).formatmonth(current.year, current.month))
+	elif len(sys.argv) == 2:
+		if str.isdigit(sys.argv[1]) == True: 
+			print(calendar.TextCalendar(firstweekday=0).formatmonth(current.year, int(sys.argv[1])))
+		else:
+			print("Invalid input. Program only accepts integer values.")
+	elif len(sys.argv) == 3:
+		if str.isdigit(sys.argv[1]) == True and str.isdigit(sys.argv[2]) == True:
+			print(calendar.TextCalendar(firstweekday=0).formatmonth(int(sys.argv[2]), int(sys.argv[1]))) 
+		else:
+			print("Invalid input. Program only accepts integer values")	
+
+calendar_function()
+# current = date.today()
+# print(current.year)
+
+# print(calendar.TextCalendar(firstweekday=0).formatmonth(current.year, current.month))
+
