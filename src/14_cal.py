@@ -22,3 +22,33 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+import re
+
+def print_calendar():
+  month = 0
+  year = 0 
+  if len(sys.argv) == 1:
+    month = datetime.today().month 
+    year = datetime.today().year
+
+  elif len(sys.argv) == 2:
+    month = int(sys.argv[1])
+    year = datetime.today().year
+
+  elif len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+
+  print(calendar.TextCalendar().formatmonth(year, month))
+
+if len(sys.argv) > 3:
+  print('Invalid input length! The function can only take two arguments')
+elif len(sys.argv) == 2 and int(sys.argv[1]) not in [month for month in range(1, 13)]:
+  print('Invalid month input. \nExpected input for month 1 through 12.')
+elif len(sys.argv) == 3 and int(sys.argv[1]) not in [month for month in range(1, 13)] or re.match(r'\d+', sys.argv[2]) is None:
+  print('Invalid month or year input. \nExpected input for month 1 through 12. \nExpected input for year positive integer.')
+else:
+  print_calendar()
+
+
+
